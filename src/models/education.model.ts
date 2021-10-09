@@ -8,9 +8,13 @@ export type EducationDocument = mongoose.Document & {
     address: string;
     state: string;
     country: string;
+    universityUrl: string;
   };
-  from: Date;
-  to: Date;
+  duration: {
+    from: Date;
+    to: Date;
+    duration: string;
+  };
   iscurrentUniversity: boolean;
   description: string;
   projects: [
@@ -28,9 +32,13 @@ const EducationSchema = new mongoose.Schema({
     address: String,
     state: String,
     country: String,
+    universityUrl: String,
   },
-  from: Date,
-  to: Date,
+  duration: {
+    from: Date,
+    to: Date,
+    duration: String,
+  },
   iscurrentUniversity: Boolean,
   description: String,
   projects: Array,

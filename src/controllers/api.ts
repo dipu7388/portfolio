@@ -9,7 +9,9 @@ import { aboutRoutes } from "../routes/about.router";
 import { About } from "../models/about";
 import { Resume } from "../models/resume.model";
 import { resumeRoutes } from "../routes/resume.router";
+import { Contact } from "../models/contact.model";
 const AboutRoutes = aboutRoutes(About);
+const ContactRoutes = aboutRoutes(Contact);
 const ResumeRoutes = resumeRoutes(Resume);
 
 const router = express.Router();
@@ -49,4 +51,5 @@ router.get("/", getApi);
 router.use("/user", UserRouter);
 router.use("/about", AboutRoutes);
 router.use("/resume", ResumeRoutes);
+router.use("/contact", ContactRoutes);
 export const ApiRouter = router;

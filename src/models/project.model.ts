@@ -5,6 +5,8 @@ export type ProjectDocument = mongoose.Document & {
   title: string;
   duration: Duration;
   description: string;
+  projectUrl: string;
+  features: string[];
 };
 
 const ProjectSchema = new mongoose.Schema({
@@ -12,6 +14,8 @@ const ProjectSchema = new mongoose.Schema({
   title: String,
   duration: Object,
   description: String,
+  projectUrl: String,
+  features: Array,
 });
 
 export const Project = mongoose.model<ProjectDocument>(
