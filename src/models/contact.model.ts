@@ -10,6 +10,7 @@ export type ContactDocument = mongoose.Document & {
   email: string;
   socialLinks: SocialLink[];
   copyright: string;
+  logoText:string;
 };
 
 export interface SocialLink {
@@ -39,6 +40,7 @@ const contactSchema = new mongoose.Schema(
     address: String,
     socialLinks: Array,
     copyright: String,
+    logoText:String
   },
   { timestamps: true }
 );
