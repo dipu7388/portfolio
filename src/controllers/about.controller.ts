@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Error } from "mongoose";
+import { interpolateString } from "../util/helper";
 
 export function AboutController(About) {
   async function post(req: Request, res: Response) {
@@ -16,15 +17,24 @@ export function AboutController(About) {
     if (req.query.email) {
       query.email = req.query.email;
     }
-    About.findOne(
-      query,
-      (err: Error, aboutDoc: { toJSON: () => any; _id: any }) => {
-        if (err) {
-          return res.send(err);
-        }
-        return res.send(aboutDoc);
+    About.findOne(query, (err: Error, aboutDoc: typeof About) => {
+      if (err) {
+        return res.send(err);
       }
-    );
+      if (aboutDoc.workStarted) {
+        const workStartDate = new Date(aboutDoc.workStarted);
+        let year = new Date().getFullYear() - workStartDate.getFullYear();
+        let months = new Date().getMonth() + 12 - workStartDate.getMonth();
+        year += parseInt(months / 12 + "");
+        months = months % 12;
+        year += months / 10;
+        year = +year.toFixed(1);
+        aboutDoc.desc = interpolateString(aboutDoc.desc, {
+          yearOfExp: year,
+        });
+      }
+      return res.send(aboutDoc);
+    });
   }
   return { post, get };
 }

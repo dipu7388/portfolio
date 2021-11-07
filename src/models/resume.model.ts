@@ -40,7 +40,6 @@ export type ResumeDocument = mongoose.Document & {
       ref: "Skill";
     }
   ];
-  interestes: string[];
 };
 
 const resumeSchema = new mongoose.Schema(
@@ -64,7 +63,6 @@ const resumeSchema = new mongoose.Schema(
     education: Array,
     projects: Array,
     skills: Array,
-    interestes: Array,
   },
   { timestamps: true }
 );

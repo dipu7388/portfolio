@@ -12,11 +12,12 @@ export type AboutDocument = mongoose.Document & {
   resumelink: string;
   age: number;
   yearOfBirth: number;
-  workStrarted: Date;
+  workStarted: Date;
   yearOfExp: number;
   services: Service[];
   profilePic: string;
   mobileNumber: string;
+  interestes: string[];
 };
 
 export interface Service {
@@ -59,8 +60,9 @@ const aboutSchema = new mongoose.Schema(
     services: Array,
     profilePic: String,
     mobileNumber: String,
-    workStrarted: Date,
+    workStarted: Date,
     yearOfExp: Number,
+    interestes: Array,
   },
   { timestamps: true }
 );
