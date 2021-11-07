@@ -38,7 +38,7 @@ mongoose
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
-app.set("host", process.env.HOST || 'localhost');
+// app.set("host", process.env.HOST || 'localhost');
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 
