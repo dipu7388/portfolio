@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Error } from "mongoose";
+import { interpolateString } from "../util/helper";
 
 export function ContactController(Contact) {
   async function post(req: Request, res: Response) {
@@ -16,15 +17,15 @@ export function ContactController(Contact) {
     if (req.query.email) {
       query.email = req.query.email;
     }
-    Contact.findOne(
-      query,
-      (err: Error, contactDoc: { toJSON: () => any; _id: any }) => {
-        if (err) {
-          return res.send(err);
-        }
-        return res.send(contactDoc);
+    Contact.findOne(query, (err: Error, contactDoc: typeof Contact) => {
+      if (err) {
+        return res.send(err);
       }
-    );
+      contactDoc.copyright = interpolateString(contactDoc.copyright, {
+        year: new Date().getFullYear(),
+      });
+      return res.send(contactDoc);
+    });
   }
   return { post, get };
 }

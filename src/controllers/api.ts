@@ -10,8 +10,9 @@ import { About } from "../models/about";
 import { Resume } from "../models/resume.model";
 import { resumeRoutes } from "../routes/resume.router";
 import { Contact } from "../models/contact.model";
+import { contactRoutes } from "../routes/contact.router";
 const AboutRoutes = aboutRoutes(About);
-const ContactRoutes = aboutRoutes(Contact);
+const ContactRoutes = contactRoutes(Contact);
 const ResumeRoutes = resumeRoutes(Resume);
 
 const router = express.Router();
